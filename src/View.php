@@ -2,44 +2,34 @@
 
 namespace KseniaD2021\ticTacToe\View;
 
-    use function cli\prompt;
-    use function cli\line;
-    use function cli\out;
+use function cli\prompt;
+use function cli\line;
+use function cli\out;
 
 function showGameBoard($board)
 {
     $boardArr = $board->getBoardArr();
-    $dimension = $board->getDimension();
-    for ($i = 0; $i < $dimension; $i++) {
-        for ($j = 0; $j < $dimension; $j++) {
+    $dim = $board->getDimension();
+    for ($i = 0; $i < $dim; $i++) {
+        for ($j = 0; $j < $dim; $j++) {
             $tempVar = $boardArr[$i][$j];
             out("|$tempVar");
-            if ($j === ($dimension - 1)) {
+            if ($j === ($dim - 1)) {
                 out("|");
             }
         }
         line();
     }
 
-    line("______________________________________
-    ");
-}
-function showMessage($message)
-{
-    line($message);
+    line("-------------------------------------------");
 }
 
-function getValue($message)
+function showMessage($msg)
 {
-    return prompt($message);
+    line($msg);
 }
 
-function showList()
+function getValue($msg)
 {
-    echo "Вывод списка всех сохраненных партий из БД SQLite3\n";
-}
-
-function showReplay()
-{
-    echo "Повстор игры с заданым id\n";
+    return prompt($msg);
 }
